@@ -1,6 +1,7 @@
 {
   "name": "shopify-advanced-search",
   "private": true,
+
   "workspaces": ["api", "admin"],
   "scripts": {
     "test": "echo \"No tests\" && exit 0",
@@ -8,5 +9,11 @@
   },
   "engines": {
     "node": ">=18"
+
+  "workspaces": ["api"],
+  "scripts": {
+    "test": "echo \"No tests\" && exit 0"
+
+
   }
 }
