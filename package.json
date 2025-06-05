@@ -1,0 +1,12 @@
+{
+  "name": "shopify-advanced-search",
+  "private": true,
+  "workspaces": ["api", "admin"],
+  "scripts": {
+    "test": "echo \"No tests\" && exit 0",
+    "dev": "npm run dev --workspace=api"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
