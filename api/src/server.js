@@ -9,6 +9,8 @@ import { indexQueue, startIndexer } from './indexer.js';
 dotenv.config();
 
 const app = express();
+// Parse raw webhook bodies before JSON middleware to verify signatures
+app.use('/webhooks', express.raw({ type: 'application/json' }));
 app.use(express.json());
 
 app.get('/auth', async (req, res) => {
@@ -53,7 +55,7 @@ app.get('/auth/callback', async (req, res) => {
   }
 });
 
-app.post('/webhooks', express.raw({ type: 'application/json' }), async (req, res) => {
+app.post('/webhooks', async (req, res) => {
   try {
     await shopify.webhooks.validate({
       rawBody: req.body,
