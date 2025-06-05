@@ -1,0 +1,20 @@
+# Node dependencies
+node_modules/
+
+# Local environment
+.env
+.env.*
+
+# Docker artifacts
+*.log
+
+# Terraform state
+infrastructure/terraform/.terraform/
+*.tfstate*
+
+# Helm charts build output
+charts/**/charts/
+
+# VSCode
+.vscode/
+
