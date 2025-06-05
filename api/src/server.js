@@ -7,6 +7,10 @@ import redis from './cache.js';
 import es from './es.js';
 import { indexQueue, startIndexer } from './indexer.js';
 
+dotenv.config();
+
+const app = express();
+
 import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api';
 
 
@@ -14,11 +18,12 @@ dotenv.config();
 
 const app = express();
 
+
 // Parse raw webhook bodies before JSON middleware to verify signatures
 app.use('/webhooks', express.raw({ type: 'application/json' }));
 app.use(express.json());
 
-=======
+
 app.use(express.json());
 
 export const shopify = shopifyApi({
@@ -28,6 +33,7 @@ export const shopify = shopifyApi({
   hostName: process.env.SHOPIFY_APP_URL.replace(/^https?:\/\//, ''),
   apiVersion: LATEST_API_VERSION,
 });
+
 
 
 app.get('/auth', async (req, res) => {
@@ -66,10 +72,12 @@ app.get('/auth/callback', async (req, res) => {
       });
     }
 
+
     await shopify.auth.installSubscription({
       shop: auth.session.shop,
       accessToken: auth.session.accessToken,
     });
+
 
     return res.redirect(`/?shop=${auth.session.shop}`);
   } catch (error) {
@@ -117,6 +125,7 @@ app.get('/search', async (req, res) => {
   res.json(hits.hits);
 });
 
+
 // Webhook handler example
 app.post(
   '/webhooks',
@@ -136,6 +145,7 @@ app.post(
   }
 );
 
+
 app.get('/healthz', (_req, res) => res.send('ok'));
 
 const port = process.env.PORT || 3000;
@@ -143,5 +153,9 @@ app.listen(port, () => {
   console.log(`API listening on ${port}`);
 
   startIndexer();
+
+
+  startIndexer();
+
 
 });
