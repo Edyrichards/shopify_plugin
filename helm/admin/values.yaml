@@ -1,0 +1,10 @@
+replicaCount: 2
+image:
+  repository: ghcr.io/example/search-admin
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+env:
+  SHOPIFY_API_KEY: "your-key"
+  API_URL: "http://api:3000"

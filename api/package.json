@@ -1,0 +1,29 @@
+{
+  "name": "search-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:coverage": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.12.0",
+    "@shopify/shopify-api": "^11.13.0",
+    "bullmq": "^2.3.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "ioredis": "^5.3.1",
+    "pg": "^8.11.3",
+    "prom-client": "^15.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

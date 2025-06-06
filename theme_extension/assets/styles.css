@@ -1,0 +1,28 @@
+.advanced-search-bar {
+  position: relative;
+}
+.advanced-search-bar input[type="search"] {
+  width: 100%;
+  padding: 8px;
+}
+.advanced-search-bar ul {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.advanced-search-bar li {
+  padding: 4px 8px;
+}
+@media (max-width: 600px) {
+  .advanced-search-results {
+    flex-direction: column;
+  }
+}

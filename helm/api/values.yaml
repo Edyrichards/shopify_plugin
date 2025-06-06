@@ -1,0 +1,14 @@
+replicaCount: 2
+image:
+  repository: ghcr.io/example/search-api
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 3000
+env:
+  SHOPIFY_API_KEY: "your-key"
+  SHOPIFY_API_SECRET: "your-secret"
+  DATABASE_URL: "postgres://user:pass@postgres:5432/search"
+  REDIS_URL: "redis://redis:6379"
+  ELASTICSEARCH_HOST: "http://elasticsearch:9200"

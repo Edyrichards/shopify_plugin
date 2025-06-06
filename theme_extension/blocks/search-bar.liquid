@@ -1,0 +1,10 @@
+<!-- Search bar block for Theme App Extension -->
+<div class="advanced-search-bar" role="search">
+  <input type="search" name="q" placeholder="Search products" aria-label="Search products" autocomplete="off" />
+  <ul id="advanced-search-results" aria-label="Search results"></ul>
+</div>
+<script src="{{ 'advanced-search.js' | asset_url }}" defer></script>
+<link rel="stylesheet" href="{{ 'styles.css' | asset_url }}" />
+<script>
+  window.ADVANCED_SEARCH_API_URL = '{{ settings.api_url }}';
+</script>

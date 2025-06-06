@@ -1,0 +1,6 @@
+kube-prometheus-stack:
+  prometheus:
+    service:
+      type: ClusterIP
+  grafana:
+    enabled: true

@@ -1,0 +1,43 @@
+{% comment %}Search results section rendered on a custom page{% endcomment %}
+<div class="advanced-search-results" aria-live="polite">
+  <form class="advanced-search-filters" method="get">
+    <label>
+      Search
+      <input type="search" name="q" value="{{ request.params.q | escape }}" aria-label="Search products" />
+    </label>
+    <label>
+      Tags
+      <input type="text" name="tags" value="{{ request.params.tags | escape }}" aria-label="Filter by tags" />
+    </label>
+    <label>
+      Min price
+      <input type="number" name="min_price" value="{{ request.params.min_price | escape }}" aria-label="Minimum price" />
+    </label>
+    <label>
+      Max price
+      <input type="number" name="max_price" value="{{ request.params.max_price | escape }}" aria-label="Maximum price" />
+    </label>
+    <button type="submit">Search</button>
+  </form>
+  <ul id="advanced-search-results-list"></ul>
+</div>
+
+<script src="{{ 'advanced-search.js' | asset_url }}" defer></script>
+<link rel="stylesheet" href="{{ 'styles.css' | asset_url }}" />
+<script>
+  window.ADVANCED_SEARCH_API_URL = '{{ settings.api_url }}';
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (q) {
+      fetch(`${window.ADVANCED_SEARCH_API_URL}/search?` + params.toString())
+        .then(r => r.json())
+        .then(data => {
+          const list = document.getElementById('advanced-search-results-list');
+          list.innerHTML = data.map(p => `<li><a href="/products/${p.handle}"><h2>${p.title}</h2></a></li>`).join('');
+        });
+    }
+  });
+</script>
